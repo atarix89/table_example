@@ -1,0 +1,135 @@
+- content_for :title do
+  test
+- content_for :description do
+  Website of atari
+/  %img{:src => "http://lorempixel.com/1170/600/cats/1"}
+ 
+%section
+.column{:style => "position: relative; left: 250px; top: 0px; width: 80%" }
+  %br= render :partial => $grid
+
+%section
+.column{ :style => "position: relative; left: 250px; top: 0px;width: 80%" }
+  %table#edittable{width: '100%'}
+    %thead  
+      %tr
+        %th{width:'4%'} ID
+        %th column1
+        %th column2
+        %th column3
+        %th column4
+        %th column5
+        %th column6
+        %th column7
+        %th column8
+        %th column9
+    %tbody
+      %tr{height: 38} 
+        %td#edid 
+        %td
+          %input#in1{placeholder: "col1", type: "text"}
+        %td
+          %input#in2{placeholder: "col2", type: "text"}
+        %td
+          %input#in3{placeholder: "col3", type: "text"}
+        %td
+          %input#in4{placeholder: "col4", type: "text"}
+        %td
+          %input#in5{placeholder: "col5", type: "text"}
+        %td#ed6
+          %input#in6{placeholder: "col6", type: "text"}
+        %td#ed7
+          %input#in7{placeholder: "col7", type: "text"}     
+        %td#ed8
+        %td#ed9
+
+%section
+.column.medium-4
+.column.medium-4
+  %a.button.radius#edit Edit   
+.column.medium-4
+  %a.button.radius#new New entry
+  %a.button.radius#submit Submit
+.column.medium-4
+  %a.button.radius#switchDB.dropdown{"data-dropdown" => "drop1"} Switch DB
+%br
+  %ul#drop1.f-dropdown{"data-dropdown-content" => ""}
+    %li
+      %a#switchDB1 First
+    %li
+      %a#switchDB2 Second
+    %li
+      %a#switchDB3 Third
+      
+:javascript
+    $("#edit").click(function() {
+      table = document.getElementById('edittable')
+      id = table.rows[1].cells[0].innerHTML
+      in1 = document.getElementById('in1').value
+      in1 = document.getElementById('in1').value
+      in2 = document.getElementById('in2').value
+      in3 = document.getElementById('in3').value
+      in4 = document.getElementById('in4').value
+      in5 = document.getElementById('in5').value
+      in6 = document.getElementById('in6').value
+      in7 = document.getElementById('in7').value
+      
+      $.ajax({
+        type: "GET",
+        url:    "/entry_edit", // should be mapped in routes.rb
+        data: {id: id, in1: in1, in2: in2, in3: in3, in4: in4, in5: in5, in6: in6, in7: in7}
+      }); 
+      
+      $("#edid").html(' ')
+      
+      document.getElementById('in1').value = ' '
+      document.getElementById('in2').value = ' '
+      document.getElementById('in3').value = ' '
+      document.getElementById('in4').value = ' '
+      document.getElementById('in5').value = ' '
+      document.getElementById('in6').value = ' '
+      document.getElementById('in7').value = ' '
+    });
+    $("#new").click(function() {      
+      $("#edid").html('new')
+      
+      document.getElementById('in1').value = 'Sample1'
+      document.getElementById('in2').value = 'Sample2'
+      document.getElementById('in3').value = 'Sample3'
+      document.getElementById('in4').value = 'Sample4'
+      document.getElementById('in5').value = 'Sample5'
+      document.getElementById('in6').value = 'Sample6'
+      document.getElementById('in7').value = 'Sample7'
+    });
+    $("#submit").click(function() {   
+      in1 = document.getElementById('in1').value
+      in1 = document.getElementById('in1').value
+      in2 = document.getElementById('in2').value
+      in3 = document.getElementById('in3').value
+      in4 = document.getElementById('in4').value
+      in5 = document.getElementById('in5').value
+      in6 = document.getElementById('in6').value
+      in7 = document.getElementById('in7').value
+     
+      $.ajax({
+        type: "GET",
+        url:    "/entry_new", // should be mapped in routes.rb
+        data: {in1: in1, in2: in2, in3: in3, in4: in4, in5: in5, in6: in6, in7: in7}
+      });
+      
+      $("#edid").html(' ')
+      
+      document.getElementById('in1').value = ' '
+      document.getElementById('in2').value = ' '
+      document.getElementById('in3').value = ' '
+      document.getElementById('in4').value = ' '
+      document.getElementById('in5').value = ' '
+      document.getElementById('in6').value = ' '
+      document.getElementById('in7').value = ' '
+    });
+
+%footer.row
+  .large-12.columns
+    %hr
+      .row
+        %p © Copyright no one at all. Go to town.

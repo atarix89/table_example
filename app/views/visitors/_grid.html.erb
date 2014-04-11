@@ -1,0 +1,46 @@
+<%= grid(@data_grid, show_filters: :when_filtered) do |g|
+
+  g.blank_slate  do
+    content_tag :div, "No records found", class: 'well'
+  end
+  
+  g.column name: 'ID', filter: false  do |data1|
+    data1.id
+  end
+    
+  g.column name: 'Column1', attribute: 'col1' do |data1|
+    data1.col1
+  end
+
+  g.column name: 'Column2', attribute: 'col2' do |data1|
+    data1.col2
+  end
+
+  g.column name: 'Column3', attribute: 'col3', filter: false do |data1|
+    data1.col3
+  end
+
+  g.column name: 'Column4', attribute: 'col4', filter: false do |data1|
+    data1.col4
+  end
+
+  g.column name: 'Column5', attribute: 'col5', filter: false do |data1|
+    data1.col5
+  end
+  
+  g.column name: 'Column6', attribute: 'col6', filter: false do |data1|
+    data1.col6
+  end
+
+  g.column name: 'Column7', attribute: 'col7', filter: false do |data1|
+    data1.col7
+  end
+  
+  g.column do |data1|
+    link_to('Edit', edit_data1_path(data1), :remote => true)
+  end
+  
+  g.column do |data3|
+    link_to('Delete', data1s_path(:id => data3), method: :delete, data: { confirm: 'Are you sure?' },  :remote => true)
+  end
+end -%>

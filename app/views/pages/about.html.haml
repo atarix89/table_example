@@ -1,0 +1,18 @@
+- content_for :title do
+  About
+  
+%section
+.column{ :style => "position: relative; left: 300px; top: 10px;" }
+  %ul.example-orbit{"data-orbit" => "", "data-options" => "timer_speed:3000; resume_on_mouseout: true;"}
+    %li
+      %img{alt: "slide 1", src: "http://rails-live-91915.apne1.nitrousbox.com/assets/orbit/orbit1.jpg"}
+      .orbit-caption
+        Working.
+    %li
+      %img{alt: "slide 2", src: "http://rails-live-91915.apne1.nitrousbox.com/assets/orbit/orbit2.jpg"}
+      .orbit-caption
+        But we need more cats.
+    %li
+      %img{alt: "slide 3", src: "http://rails-live-91915.apne1.nitrousbox.com/assets/orbit/orbit3.jpg"}/
+      .orbit-caption
+        OK, this one seems legit.
