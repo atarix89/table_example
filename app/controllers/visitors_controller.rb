@@ -38,8 +38,7 @@ class VisitorsController < ApplicationController
 #  end
 
   def entry_new
-    puts 'lel'
-    @data =$db.new
+    @data = $db.new
     @data.col1 = params[:in1]
     @data.col2 = params[:in2]
     @data.col3 = params[:in3]
@@ -48,7 +47,6 @@ class VisitorsController < ApplicationController
     @data.col6 = params[:in6]
     @data.col7 = params[:in7]   
     @data.save
-    puts 'lel'
     respond_to do |format|
       format.js {render :js => "location.reload()"}
     end
@@ -79,7 +77,8 @@ class VisitorsController < ApplicationController
       @data_grid = initialize_grid($db)
     else
       ActiveRecord::Base.establish_connection :data1
-      @data_grid = initialize_grid(Data1)
+      $db = Data1
+      @data_grid = initialize_grid($db)
       $grid = "grid1"
     end      
     @visitor = Visitor.new
