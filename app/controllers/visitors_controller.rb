@@ -3,13 +3,7 @@ class VisitorsController < ApplicationController
   #  data = Data1.create({id: 10, col1: 'awg4',col2: '15eyy2',col3: '1seys58',col4: '350',col5: '23et34',col6: '1seu83',col7: '673',col8: '332',col9: '655'}) 
 
   def connect_db1
-    ActiveRecord::Base.establish_connection( # [Heroku fix] since Heroku deletes database.yml, we'll pass all parameters here
-        host: '127.0.0.1',
-        adapter: 'sqlite3',
-        encoding: 'utf8',
-        database: 'db/data/data1.sqlite3',
-        pool: '5',
-        timeout: '5000')
+    ActiveRecord::Base.establish_connection :data1
     $db = Data1
     @data = $db.new
     @data_grid = initialize_grid($db)
@@ -18,13 +12,7 @@ class VisitorsController < ApplicationController
   end
   
   def connect_db2
-    ActiveRecord::Base.establish_connection(
-        host: '127.0.0.1',
-        adapter: 'sqlite3',
-        encoding: 'utf8',
-        database: 'db/data/data2.sqlite3',
-        pool: '5',
-        timeout: '5000')
+    ActiveRecord::Base.establish_connection :data2
     $db = Data2
     @data = $db.new
     @data_grid = initialize_grid($db)
@@ -33,13 +21,7 @@ class VisitorsController < ApplicationController
   end
   
   def connect_db3
-    ActiveRecord::Base.establish_connection(
-        host: '127.0.0.1',
-        adapter: 'sqlite3',
-        encoding: 'utf8',
-        database: 'db/data/data3.sqlite3',
-        pool: '5',
-        timeout: '5000')
+    ActiveRecord::Base.establish_connection :data3
     $db = Data3
     @data = $db.new
     @data_grid = initialize_grid($db)
@@ -91,13 +73,7 @@ class VisitorsController < ApplicationController
     if defined? $db then 
       @data_grid = initialize_grid($db)
     else
-      ActiveRecord::Base.establish_connection(
-        host: '127.0.0.1',
-        adapter: 'sqlite3',
-        encoding: 'utf8',
-        database: 'db/data/data1.sqlite3',
-        pool: '5',
-        timeout: '5000')
+    ActiveRecord::Base.establish_connection :data1
       $db = Data1
       @data_grid = initialize_grid($db)
       $grid = "grid1"
