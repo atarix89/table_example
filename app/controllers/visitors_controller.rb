@@ -45,7 +45,7 @@ class VisitorsController < ApplicationController
     @data.col7 = params[:in7]   
     @data.save
     respond_to do |format|
-      format.js {render :js => "location.reload()"}
+      format.js {render :js => "location.reload()"}	 # not the best way, .load() is smarter, but it crashes wice_grid
     end
   end
   

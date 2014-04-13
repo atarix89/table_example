@@ -8,3 +8,6 @@ This version of the app uses sqlite databases instead MySQL, thus MySQL server i
 "Edit" link -> "Edit" button to edit entry
 "Delete" link to delete record
 "Switch DB" to change current database
+
+To sort column, click on its name
+To filter column click "Show filter" button (top right cell), input data and click "Filter" button
